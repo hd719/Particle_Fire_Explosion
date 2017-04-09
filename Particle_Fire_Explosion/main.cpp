@@ -31,6 +31,41 @@ int main() {
         return 2;
     }
     
+    // SOmething we use to draw on the window and texture is like a bitmap so basically creating a renderer doing stuff with the texture and then passing the texture to the renderer so we display in the window
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+    SDL_Texture *texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STATIC, SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    if(renderer == NULL) {
+        cout << "Could not create renderer" << endl;
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        return 3;
+    }
+    
+    if(texture == NULL) {
+        cout << "Could not create Texture" << endl;
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        return 4;
+    }
+    
+    //Area of memory to hold the info of the pixels on the screen and update the texture with this info
+    //Type declared by SDL == int(usually 32 bits, but for some systems int might be not be 32 bits)
+    //Allocate enough of these to display on the screen
+    //For every pixel is 4 bites(RGBA) (4 times 8 == 32)
+    //buffer is place holder for some amount of memory
+    Uint32 *buffer = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT];
+    
+    //Write some pixel info in the buffer so we something in our window
+    //Another way to represent 255 = 0xFF (Hexidecimal)
+    memset(buffer, 255, SCREEN_WIDTH*SCREEN_HEIGHT*sizeof(Uint32));
+    
+    SDL_UpdateTexture(texture, NULL, buffer, SCREEN_WIDTH*sizeof(Uint32));
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, texture, NULL, NULL);
+    SDL_RenderPresent(renderer);
+    
     //Game Loop: Loop that will run as long as the game is running, update the state of particles, draw our particles, check for events(messages, for example clicks a button on a window and will call a DS and check to see what has happened)
     //Will execute 30 times a second
     bool quit = false;
@@ -50,8 +85,9 @@ int main() {
         }
     }
     
-    
-    
+    delete [] buffer;
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyTexture(texture);
     SDL_DestroyWindow(window); //Before we quit a program you have to call SDL_DestroyWindow(window)
     SDL_Quit();
     
