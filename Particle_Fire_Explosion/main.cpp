@@ -31,7 +31,7 @@ int main() {
         return 2;
     }
     
-    // SOmething we use to draw on the window and texture is like a bitmap so basically creating a renderer doing stuff with the texture and then passing the texture to the renderer so we display in the window
+    //Something we use to draw on the window and texture is like a bitmap so basically creating a renderer doing stuff with the texture and then passing the texture to the renderer so we display in the window
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
     SDL_Texture *texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STATIC, SCREEN_WIDTH, SCREEN_HEIGHT);
     
@@ -58,8 +58,17 @@ int main() {
     Uint32 *buffer = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT];
     
     //Write some pixel info in the buffer so we something in our window
-    //Another way to represent 255 = 0xFF (Hexidecimal)
-    memset(buffer, 255, SCREEN_WIDTH*SCREEN_HEIGHT*sizeof(Uint32));
+    //Another way to represent 255 = 0xFF (Hexidecimal), FF: Is the maximum value we can store in a single bite in Hexidecimal
+    memset(buffer, 0, SCREEN_WIDTH*SCREEN_HEIGHT*sizeof(Uint32));
+    
+    //Setting color to an individual pixel
+    //Each pixel occupies 1 byte
+    //0xFFFFFFFF: Setting all 4 bites to max.
+    buffer[30000] = 0xFFFFFFFF;
+    
+    for(int i = 0; i < SCREEN_WIDTH*SCREEN_HEIGHT; i++){
+        buffer[i] = 0xFFFFFFFF;
+    }
     
     SDL_UpdateTexture(texture, NULL, buffer, SCREEN_WIDTH*sizeof(Uint32));
     SDL_RenderClear(renderer);
