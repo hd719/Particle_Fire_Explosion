@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		671989BC1E992F03007DE145 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 671989BB1E992F03007DE145 /* main.cpp */; };
 		671989C31E992FF1007DE145 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 671989C21E992FF1007DE145 /* libSDL2-2.0.0.dylib */; };
+		67D3F3431E9C44DA00E237E8 /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67D3F3411E9C44DA00E237E8 /* Screen.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +28,8 @@
 		671989B81E992F03007DE145 /* Particle_Fire_Explosion */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Particle_Fire_Explosion; sourceTree = BUILT_PRODUCTS_DIR; };
 		671989BB1E992F03007DE145 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		671989C21E992FF1007DE145 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../usr/local/Cellar/sdl2/2.0.4/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
+		67D3F3411E9C44DA00E237E8 /* Screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
+		67D3F3421E9C44DA00E237E8 /* Screen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Screen.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				671989BB1E992F03007DE145 /* main.cpp */,
+				67D3F3421E9C44DA00E237E8 /* Screen.hpp */,
+				67D3F3411E9C44DA00E237E8 /* Screen.cpp */,
 			);
 			path = Particle_Fire_Explosion;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				671989BC1E992F03007DE145 /* main.cpp in Sources */,
+				67D3F3431E9C44DA00E237E8 /* Screen.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
